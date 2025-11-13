@@ -3,14 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <title>Student Engagement Module Links</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
   <style>
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Roboto', sans-serif;
       background-color: #f8f9fa;
       color: #333;
       padding: 40px;
       display: flex;
       justify-content: center;
+    }
+
+    input, button {
+      font-family: 'Roboto', sans-serif;
     }
 
     .container {
@@ -20,48 +26,61 @@
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
       max-width: 600px;
       width: 100%;
-      text-align: center;
     }
 
     h1 {
-      margin-bottom: 10px;
-      color: #0056b3;
+      margin-bottom: 40px;
+      color: #0D2848;
+      text-align: center;
     }
 
     p.description {
       font-size: 16px;
-      margin-bottom: 15px;
+      margin-bottom: 20px;
+      text-align: left;
     }
 
     p.window {
-      font-size: 14px;
-      color: #666;
+      font-size: 20px;
+      font-weight: bold;
+      color: #947527;
+      background-color: #fcf7e1;
+      padding: 5px 10px;
       margin-bottom: 25px;
+      text-align: left;
+      display: inline-block;
+      border-radius: 5px;
+    }
+
+    .link-section {
+      margin-bottom: 20px;
+      text-align: left;
     }
 
     .link-box {
       display: flex;
       align-items: center;
-      justify-content: center;
+      justify-content: space-between;
       border: 1px solid #ccc;
       border-radius: 6px;
       overflow: hidden;
       max-width: 100%;
       background: #f1f3f5;
+      margin-top: 5px;
     }
 
     .link-box input {
       border: none;
       padding: 10px;
       font-size: 16px;
-      width: 80%;
+      width: 85%;
       outline: none;
       background: transparent;
     }
 
     .link-box button {
       border: none;
-      background: #0056b3;
+      background: #0D2848;
       color: white;
       padding: 10px 15px;
       cursor: pointer;
@@ -69,7 +88,7 @@
     }
 
     .link-box button:hover {
-      background: #004494;
+      background: #0a1f36;
     }
 
     .copied-msg {
@@ -83,44 +102,54 @@
 <body>
   <div class="container">
     <h1>Student Engagement Module Links</h1>
-    <p class="description">Use the personalized link below to administer the Student Engagement Module survey to your students.</p>
-    <p class="window">Administration window: First 10 days of school</p>
+    <p class="description">Use the personalized links below to administer the Student Engagement Module to your students.</p>
+    <p class="window">SEM 1: First 10 days of school</p>
 
-    <div class="link-box">
-      <input type="text" id="survey-link" readonly>
-      <button onclick="copyLink()">📋</button>
+    <div class="link-section">
+      <div>Short link:</div>
+      <div class="link-box">
+        <input type="text" id="short-link" readonly>
+        <button onclick="copyLink('short-link')">Copy Link</button>
+      </div>
     </div>
+
+    <div class="link-section">
+      <div>Long link (if the short link above doesn't work):</div>
+      <div class="link-box">
+        <input type="text" id="long-link" readonly>
+        <button onclick="copyLink('long-link')">Copy Link</button>
+      </div>
+    </div>
+
     <div class="copied-msg" id="copied-msg">Link copied!</div>
   </div>
 
   <script>
-    // Teacher links JSON
-    const teacherLinks = {
-      "001": "https://utexas.qualtrics.com/jfe/form/SV_08wxh58X7ZvLrJI?TeacherID=001",
-      "002": "https://utexas.qualtrics.com/jfe/form/SV_08wxh58X7ZvLrJI?TeacherID=002",
-      "003": "https://utexas.qualtrics.com/jfe/form/SV_08wxh58X7ZvLrJI?TeacherID=003",
-      "004": "https://utexas.qualtrics.com/jfe/form/SV_08wxh58X7ZvLrJI?TeacherID=004",
-      "005": "https://utexas.qualtrics.com/jfe/form/SV_08wxh58X7ZvLrJI?TeacherID=005"
-    };
+    const bitlyBase = "https://bit.ly/47FDg1w";
+    const longBase = "https://utexas.qualtrics.com/jfe/form/SV_08wxh58X7ZvLrJI";
 
     // Get teacher ID from URL query string
     const params = new URLSearchParams(window.location.search);
     const teacherID = params.get('TeacherID');
 
-    // Set survey link
-    const inputBox = document.getElementById('survey-link');
+    const shortInput = document.getElementById('short-link');
+    const longInput = document.getElementById('long-link');
     const copiedMsg = document.getElementById('copied-msg');
 
-    if (teacherID && teacherLinks[teacherID]) {
-      inputBox.value = teacherLinks[teacherID];
-    } else {
-      inputBox.value = "Teacher ID not found. Please check your Canvas page link.";
+    // Function to append ?ID= if teacherID exists
+    function appendID(base) {
+      return teacherID ? base + "?ID=" + teacherID : base;
     }
 
-    // Copy to clipboard function
-    function copyLink() {
+    // Set input values
+    shortInput.value = appendID(bitlyBase);
+    longInput.value = appendID(longBase);
+
+    // Copy function
+    function copyLink(inputId) {
+      const inputBox = document.getElementById(inputId);
       inputBox.select();
-      inputBox.setSelectionRange(0, 99999); // for mobile devices
+      inputBox.setSelectionRange(0, 99999); // for mobile
       navigator.clipboard.writeText(inputBox.value).then(() => {
         copiedMsg.style.display = "block";
         setTimeout(() => copiedMsg.style.display = "none", 2000);
