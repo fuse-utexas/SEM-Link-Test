@@ -154,22 +154,28 @@
       fullBox.value = baseSurveyLink;
     }
 
-    // Copy functions
-    function copyShortLink() {
-      shortBox.select();
-      navigator.clipboard.writeText(shortBox.value).then(() => {
-        copiedMsg.style.display = "block";
-        setTimeout(() => copiedMsg.style.display = "none", 2000);
-      });
+ // Copy to clipboard function with iframe fallback
+function copyLink() {
+  inputBox.select();
+  inputBox.setSelectionRange(0, 99999); // for mobile support
+  navigator.clipboard.writeText(inputBox.value).then(() => {
+    copiedMsg.style.display = "block";
+    copiedMsg.textContent = "Link copied!";
+    setTimeout(() => copiedMsg.style.display = "none", 2000);
+  }).catch(err => {
+    // fallback for iframe environments (like Canvas)
+    try {
+      document.execCommand('copy');
+      copiedMsg.style.display = "block";
+      copiedMsg.textContent = "Link copied!";
+      setTimeout(() => copiedMsg.style.display = "none", 2000);
+    } catch (e) {
+      copiedMsg.style.display = "block";
+      copiedMsg.textContent = "Please press Ctrl+C (Windows) or Cmd+C (Mac) to copy the link.";
     }
+  });
+}
 
-    function copyFullLink() {
-      fullBox.select();
-      navigator.clipboard.writeText(fullBox.value).then(() => {
-        copiedMsg.style.display = "block";
-        setTimeout(() => copiedMsg.style.display = "none", 2000);
-      });
-    }
   </script>
 </body>
 </html>
