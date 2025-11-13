@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Teacher Survey Links</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 30px; }
+    .link-box { margin-top: 20px; padding: 15px; border: 1px solid #ccc; width: 100%; max-width: 600px; }
+    input { width: 100%; padding: 8px; font-size: 16px; }
+  </style>
+</head>
+<body>
+
+<h1>Your Qualtrics Survey Link</h1>
+<p>Copy your personalized link below:</p>
+
+<div class="link-box">
+  <input type="text" id="survey-link" readonly>
+</div>
+
+<script>
+  // Simulated teacher database
+  const teacherLinks = {
+    "001": "https://utexas.qualtrics.com/jfe/form/SV_08wxh58X7ZvLrJI?TeacherID=001",
+    "002": "https://utexas.qualtrics.com/jfe/form/SV_08wxh58X7ZvLrJI?TeacherID=002",
+    "003": "https://utexas.qualtrics.com/jfe/form/SV_08wxh58X7ZvLrJI?TeacherID=003"
+  };
+
+  // Get teacher ID from URL query string
+  const params = new URLSearchParams(window.location.search);
+  const teacherID = params.get('TeacherID');
+
+  // Set the survey link
+  const inputBox = document.getElementById('survey-link');
+  if (teacherID && teacherLinks[teacherID]) {
+    inputBox.value = teacherLinks[teacherID];
+  } else {
+    inputBox.value = "Teacher ID not found. Please check your Canvas page link.";
+  }
+</script>
+
+</body>
+</html>
