@@ -17,6 +17,28 @@
       margin: 0;
     }
 
+    /* Page layout: left = SEM links, right = buttons */
+.layout {
+  display: flex;
+  align-items: flex-start;
+  gap: 40px; /* space between left and right */
+}
+
+/* Right side panel for buttons */
+.side-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  position: sticky;
+  top: 70px; /* stays visible while scrolling */
+}
+
+/* Limit width so it looks like a side column */
+.side-panel .sem-button {
+  width: 220px;
+  text-align: center;
+}
+
     input {
       font-family: 'Lato', sans-serif;
     }
@@ -38,7 +60,7 @@
     }
 
     p.description {
-      font-size: 16px;
+      font-size: 17px;
       margin-bottom: 25px;
       line-height: 1.8;
     }
@@ -134,21 +156,13 @@
   </style>
 </head>
 <body>
+<div class="layout">
 
-  <div class="button-wrapper">
-    <a href="URL_TO_IMPLEMENTATION_GUIDE" target="_blank" class="sem-button">
-      26-27 Student Module Implementation Guide
-    </a>
-    <a href="URL_TO_UPLOAD_ROSTER" target="_blank" class="sem-button">
-      Upload Roster
-    </a>
-  </div>
-
+      <!-- LEFT: main content container -->
   <div class="container">
-    <h1>Student Engagement Module (SEM) Links</h1>
 
     <p class="description">
-      Use your personalized link to distribute the module. Be sure to copy the entire link.
+      Here are your personalized links to distribute the student module. Be sure to copy the entire link.
     </p>
 
 
@@ -212,6 +226,18 @@
       <strong>Windows:</strong> Ctrl + F5 | <strong>Mac:</strong> Cmd + Shift + R
     </div>
   </div>
+</div>
+
+      <!-- LEFT: side panel -->
+
+    <div class="button-wrapper side-panel">
+    <a href="URL_TO_IMPLEMENTATION_GUIDE" target="_blank" class="sem-button">
+      26-27 Student Module Implementation Guide
+    </a>
+    <a href="URL_TO_UPLOAD_ROSTER" target="_blank" class="sem-button">
+      Upload Roster
+    </a>
+  </div>
 
 <script>
 /* ------------------------------------
@@ -272,6 +298,7 @@ function selectText(id) {
   box.setSelectionRange(0, 99999);
 }
 </script>
+</div> <!-- end layout -->
 
 </body>
 </html>
