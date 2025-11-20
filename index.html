@@ -12,75 +12,72 @@
       font-family: 'Lato', sans-serif;
       background-color: #ffffff;
       color: #333;
-      padding: 40px;
-      display: flex;
-      justify-content: flex-start;
-        padding: 40px 40px; /* top/bottom 40px, left/right 20px */
-
+      padding: 40px 40px;
+      text-align: left;
+      margin: 0;
     }
-
 
     input {
       font-family: 'Lato', sans-serif;
     }
 
     .container {
-      background: #f9f9f9; /* light grey box for all links */
+      background: #f9f9f9;
       padding: 30px;
       border-radius: 15px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-      max-width: 600px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      max-width: 700px;
       width: 100%;
+      margin: 25px 0 30px 0;
+      box-sizing: border-box;
     }
 
     h1 {
-      margin-bottom: 30px;
-      color: #AC882E;
-      text-align: left;
+      margin-bottom: 40px;
+      color: #84620c;
     }
 
     p.description {
       font-size: 16px;
       margin-bottom: 25px;
-      text-align: left;
+      line-height: 1.8;
     }
-
 
     .window-box {
       font-size: 20px;
       font-weight: bold;
-      color: #AC882E;
-      background-color: #fcf7e1;
-      padding: 8px 12px;
-      margin-bottom: 5px;
-      text-align: left;
-      border-radius: 0px;
+      color: #84620c;
+      margin-bottom: 0px;
+            margin-top: 10px;
+
       display: inline-block;
     }
 
     .label {
       font-weight: bold;
-      margin-top: 20px;
-      margin-bottom: 5px;
+      margin-top: 10px;
+            margin-left: 5px;
+
+      margin-bottom: 8px;
       display: block;
       font-size: 16px;
     }
 
     .link-box {
-  background: #ffffff;
-  border: 1.5px solid #dedede;
-  border-radius: 10px;
-  padding: 14px 18px;
-  margin-top: 12px;
-  margin-bottom: 18px;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  font-family: 'Lato', sans-serif;
-}
+      background: #ffffff;
+      border: 1.5px solid #dedede;
+      border-radius: 10px;
+      padding: 12px 18px;
+      margin-top: 5px;
+      margin-bottom: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      font-family: 'Lato', sans-serif;
+    }
 
     .link-box:hover {
-      background: #e8f1fd;
+      background: #e8f1fde3;
     }
 
     .link-box input {
@@ -93,56 +90,180 @@
       color: #0D2848;
     }
 
-   
+    .button-wrapper {
+      max-width: 800px;
+      width: 100%;
+      margin-bottom: 10px;
+    }
+
+    .sem-button {
+      display: inline-block;
+      background-color: #AC882E;
+      color: white;
+      padding: 12px 25px;
+      text-decoration: none;
+      border-radius: 8px;
+      margin-right: 10px;
+      font-weight: bold;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+      transition: background-color 0.3s, transform 0.2s;
+      margin-bottom: 5px;
+    }
+
+    .sem-button:hover {
+      background-color: #997123;
+      transform: translateY(-2px);
+    }
+
+    .refresh-note {
+      background-color: #fff8ec7b;
+      border-left: 4px solid #AC882E;
+      padding: 12px 15px;
+      margin-top: 10px;
+      margin-bottom: 20px;
+    }
+
+    /* Grey-out entire SEM section */
+      .disabled-section {
+  opacity: 0.45;
+  filter: grayscale(30%);
+}
+
+    /* Hidden placeholders — ready to activate later */
+    .hidden { display: none; }
   </style>
 </head>
 <body>
+
+  <div class="button-wrapper">
+    <a href="URL_TO_IMPLEMENTATION_GUIDE" target="_blank" class="sem-button">
+      26-27 Student Module Implementation Guide
+    </a>
+    <a href="URL_TO_UPLOAD_ROSTER" target="_blank" class="sem-button">
+      Upload Roster
+    </a>
+  </div>
+
   <div class="container">
-    <h1>Student Engagement Module Links</h1>
+    <h1>Student Engagement Module (SEM) Links</h1>
 
-        <p class="description">Use the personalized link below to administer the Student Engagement Module to your students.</p>
+    <p class="description">
+      Use your personalized link to distribute the module. Be sure to copy the entire link.
+    </p>
 
+    <div class="sem1-section">
+    <!-- SEM 1 -->
+
+     <!-- <div class="sem1-section disabled-section"> -->
     <div class="window-box">SEM 1: First 10 Days of School</div>
 
-    <!-- Short Link Section -->
     <label class="label">SEM 1 Short Link:</label>
-    <div class="link-box" onclick="selectText('short-link')">
-      <input type="text" id="short-link" readonly>
+    <div class="link-box" onclick="selectText('sem1-short')">
+      <input type="text" id="sem1-short" readonly>
     </div>
 
-    <!-- Long Link Section -->
-    <label class="label">SEM 1 Long Link (if short link above doesn't work):</label>
-    <div class="link-box" onclick="selectText('long-link')">
-      <input type="text" id="long-link" readonly>
+    <label class="label">SEM 1 Long Link:</label>
+    <div class="link-box" onclick="selectText('sem1-long')">
+      <input type="text" id="sem1-long" readonly>
+    </div>
+        </div>
+
+
+    <!-- SEM 2 (placeholder, hidden for now) -->
+    <div id="sem2-section" class="">
+      <div class="window-box">SEM 2: Coming Soon</div>
+
+      <label class="label">SEM 2 Short Link:</label>
+      <div class="link-box">
+        <input type="text" id="sem2-short" readonly>
+      </div>
+
+      <label class="label">SEM 2 Long Link:</label>
+      <div class="link-box">
+        <input type="text" id="sem2-long" readonly>
+      </div>
+    </div>
+
+    <!-- SEM 3 (placeholder, hidden for now) -->
+    <div id="sem3-section" class="">
+      <div class="window-box">SEM 3: Coming Soon</div>
+
+      <label class="label">SEM 3 Short Link:</label>
+      <div class="link-box">
+        <input type="text" id="sem3-short" readonly>
+      </div>
+
+      <label class="label">SEM 3 Long Link:</label>
+      <div class="link-box">
+        <input type="text" id="sem3-long" readonly>
+      </div>
+    </div>
+
+    <div class="refresh-note">
+      If the link isn’t showing up, try refreshing the page:
+      <strong>Windows:</strong> Ctrl + F5 | <strong>Mac:</strong> Cmd + Shift + R
     </div>
   </div>
 
-  <script>
-    const baseSurveyLink = "https://utexas.qualtrics.com/jfe/form/SV_08wxh58X7ZvLrJI";
-    const shortBase = "https://dub.sh/SEM1";
+<script>
+/* ------------------------------------
+   Clean, scalable link configuration
+------------------------------------ */
+const SEM_LINKS = {
+  sem1: {
+    short: "https://dub.sh/SEM1",
+    long:  "https://utexas.qualtrics.com/jfe/form/SV_08wxh58X7ZvLrJI"
+  },
+  sem2: {
+    short: "https://dub.sh/SEM2",
+    long:  "https://utexas.qualtrics.com/jfe/form/SV_SEM2_PLACEHOLDER"
+  },
+  sem3: {
+    short: "https://dub.sh/SEM3",
+    long:  "https://utexas.qualtrics.com/jfe/form/SV_SEM3_PLACEHOLDER"
+  }
+};
 
-    // Read ID from URL
-    const params = new URLSearchParams(window.location.search);
-    const teacherID = params.get('ID');
+/* ------------------------------------
+   Read teacher ID from URL
+------------------------------------ */
+const params = new URLSearchParams(window.location.search);
+const teacherID = params.get('ID');
 
-    const shortBox = document.getElementById('short-link');
-    const longBox = document.getElementById('long-link');
+/* ------------------------------------
+   Function to build final links
+------------------------------------ */
+function buildLink(base) {
+  if (!teacherID) return base;
+  return base + "?ID=" + teacherID;
+}
 
-    // Build final links
-    if (teacherID) {
-      shortBox.value = shortBase + "?ID=" + teacherID;
-      longBox.value = baseSurveyLink + "?ID=" + teacherID;
-    } else {
-      shortBox.value = shortBase;
-      longBox.value = baseSurveyLink;
-    }
+/* ------------------------------------
+   Assign SEM 1 links
+------------------------------------ */
+document.getElementById("sem1-short").value = buildLink(SEM_LINKS.sem1.short);
+document.getElementById("sem1-long").value  = buildLink(SEM_LINKS.sem1.long);
 
-    // Highlight text on click
-    function selectText(id) {
-      const box = document.getElementById(id);
-      box.select();
-      box.setSelectionRange(0, 99999);
-    }
-  </script>
+/* ------------------------------------
+   SEM 2 & SEM 3 READY FOR LATER
+   (Once released, just remove "hidden" 
+    from #sem2-section or #sem3-section)
+------------------------------------ */
+document.getElementById("sem2-short").value = buildLink(SEM_LINKS.sem2.short);
+document.getElementById("sem2-long").value  = buildLink(SEM_LINKS.sem2.long);
+
+document.getElementById("sem3-short").value = buildLink(SEM_LINKS.sem3.short);
+document.getElementById("sem3-long").value  = buildLink(SEM_LINKS.sem3.long);
+
+/* ------------------------------------
+   Text selection
+------------------------------------ */
+function selectText(id) {
+  const box = document.getElementById(id);
+  box.select();
+  box.setSelectionRange(0, 99999);
+}
+</script>
+
 </body>
 </html>
